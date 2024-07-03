@@ -541,7 +541,17 @@
 
     startPauseBtn.addEventListener('click', () => {
       if (!isRunning) {
-        startTimer();
+        const days = parseInt(inputDays.value) || 0;
+        const hours = parseInt(inputHours.value) || 0;
+        const minutes = parseInt(inputMinutes.value) || 0;
+        const seconds = parseInt(inputSeconds.value) || 0;
+        totalSeconds = (days * 86400) + (hours * 3600) + (minutes * 60) + seconds;
+        initialTotalSeconds = totalSeconds;
+        if (totalSeconds > 0) {
+          startTimer();
+        } else {
+          alert("Please enter a valid time to start the timer.");
+        }
       } else {
         pauseTimer();
       }
